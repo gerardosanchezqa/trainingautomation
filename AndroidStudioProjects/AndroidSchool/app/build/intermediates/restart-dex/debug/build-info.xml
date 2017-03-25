@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="22"
+    density="xxhdpi"
+    format="8"
+    plugin-version="2.2.3"
+    timestamp="612378178914597"
+    token="2199978927725283887"
+    verifier="COMPATIBLE" >
+
+    <task
+        name="javac"
+        duration="48" />
+    <task
+        name="instant-run-dex"
+        duration="7" />
+    <task
+        name="instant-run-transform"
+        duration="6" />
+    <task
+        name="verifier"
+        duration="0" />
+
+    <artifact
+        location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/reload-dex/debug/classes.dex"
+        type="RELOAD_DEX" />
+
+    <build
+        timestamp="611520768911310"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/outputs/apk/app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="611974111278169"
+        verifier="IMPLEMENTED_INTERFACES_CHANGE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="612034584069713"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/builds/debug/612034584069713/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="612137273571905"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/builds/debug/612137273571905/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="612161933221134"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/builds/debug/612161933221134/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="612245151909253"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/builds/debug/612245151909253/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="612266070570043"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/builds/debug/612266070570043/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="612299169826535"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/builds/debug/612299169826535/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="612350492590753"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/builds/debug/612350492590753/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="612378178914597"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/gsanchez/AndroidStudioProjects/AndroidSchool/app/build/intermediates/reload-dex/debug/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+
+</instant-run>
