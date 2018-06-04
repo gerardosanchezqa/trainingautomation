@@ -1,36 +1,42 @@
 package automation.component;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends BasePage{
+import java.util.List;
 
-    private By loginButton = By.className("login");
+public class HomePage extends BasePage {
 
-    private By logoutButton = By.className("logout");
+    @FindBy(className = "bx-prev")
+    @CacheLookup
+    WebElement imageSliderPrevious;
 
-    public HomePage(WebDriver driver){
+    @FindBy(className = "bx-next")
+    @CacheLookup
+    WebElement imageSliderNext;
 
-        this.driver = driver;
+    @FindBy(css = "#homeslider > li")
+    @CacheLookup
+    public List<WebElement> imagesArray;
+
+
+    public HomePage(WebDriver webDriver, PagesFactory pagesFactory) {
+        super(webDriver, pagesFactory);
+    }
+
+    public boolean checkImageVisibility(int imageIndex) {
+        return checkVisibility(imagesArray.get(imageIndex));
 
     }
 
-    public LoginPage clickLoginButton(){
+    public void clickImageSliderNext(){
+        imageSliderNext.click();
+    }
 
-        click(loginButton);
-        return new LoginPage(driver);
+    public void clickImageSliderPrevious(){
 
     }
 
-    public boolean isLoginButtonViisble(){
-
-        return checkVisibility(loginButton);
-
-    }
-
-    public boolean isLogoutButtonViisble(){
-
-        return checkVisibility(logoutButton);
-
-    }
 }

@@ -1,38 +1,44 @@
 package automation.component;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
-    private By emailInput = By.id("email");
+    @FindBy(id = "email")
+    @CacheLookup
+    WebElement emailInput;
 
-    private By passwordInput = By.id("passwd");
+    @FindBy(id = "passwd")
+    @CacheLookup
+    WebElement passwordInput;
 
-    private By signInButton = By.id("SubmitLogin");
+    @FindBy(id = "SubmitLogin")
+    @CacheLookup
+    WebElement signInButton;
 
-    LoginPage(WebDriver driver){
-
-        this.driver = driver;
-
+    public LoginPage(WebDriver webDriver, PagesFactory pagesFactory) {
+        super(webDriver, pagesFactory);
     }
 
-    public LoginPage setEmailInput(String inputText){
+    public LoginPage setEmailInput(String inputText) {
 
         sendKeys(emailInput, inputText);
-        return new LoginPage(driver);
+        return withPage().loginPage();
 
     }
 
-    public LoginPage setPasswordInput(String inputText){
+    public LoginPage setPasswordInput(String inputText) {
 
         sendKeys(passwordInput, inputText);
-        return new LoginPage(driver);
+        return withPage().loginPage();
     }
 
-    public HomePage clickSignInButton(){
+    public HomePage clickSignInButton() {
 
         click(signInButton);
-        return new HomePage(driver);
+        return withPage().homePage();
     }
 }

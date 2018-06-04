@@ -1,44 +1,45 @@
 package automation.test;
 
-import automation.component.HomePage;
-import automation.component.LoginPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
+@Listeners(automation.test.ListenerTest.class)
 
-public class LoginAutomation {
-
-    private WebDriver driver;
-
-    @BeforeTest
-    public void setup(){
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("http://automationpractice.com/index.php");
-    }
+public class LoginAutomation extends BaseTestCase {
 
     @Test(priority = 0)
-    public void login_test(){
-        HomePage homePage = new HomePage(driver);
+    public void login_test() {
+        homePage = goToWebsite("http://automationpractice.com/index.php");
         Assert.assertEquals("My Store", homePage.getPageTitle());
-        Assert.assertTrue(homePage.isLoginButtonViisble());
-        LoginPage loginPage = homePage.clickLoginButton();
+        Assert.assertTrue(homePage.isLoginButtonVisible());
+        loginPage = homePage.clickLoginButton();
         Assert.assertEquals("Login - My Store", loginPage.getPageTitle());
         homePage = loginPage.setEmailInput("geraautomationtest@test.com")
                 .setPasswordInput("geraautomation")
                 .clickSignInButton();
         Assert.assertEquals("My account - My Store", homePage.getPageTitle());
-        Assert.assertTrue(homePage.isLogoutButtonViisble());
+        Assert.assertTrue(homePage.isLogoutButtonVisible());
     }
 
-    @AfterTest
-    public void closeBrowser(){
-        driver.close();
+    @Test(priority = 1)
+    public void logout_test() {
+        homePage.clickLogoutButton();
+        Assert.assertEquals("Login - My Store", homePage.getPageTitle());
+        Assert.assertTrue(loginPage.isLoginButtonVisible());
     }
 
+    @Test(priority = 2)
+    public void goToHomePageAndScrollThroughImages() {
+        homePage = loginPage.returnToHomePage();
+        Assert.assertEquals("My Store", homePage.getPageTitle());
+        Assert.assertTrue(homePage.checkImageVisibility(1));
+        Assert.assertFalse(homePage.checkImageVisibility(2));
+        homePage.clickImageSliderNext();
+        try{Thread.sleep(1000);}catch(InterruptedException e){e.printStackTrace();}
+        homePage.clickImageSliderNext();
+        try{Thread.sleep(1000);}catch(InterruptedException e){e.printStackTrace();}
+        Assert.assertTrue(homePage.checkImageVisibility(3));
+        Assert.assertFalse(homePage.checkImageVisibility(1));
+    }
 }
