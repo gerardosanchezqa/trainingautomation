@@ -21,6 +21,10 @@ public class HomePage extends BasePage {
     @CacheLookup
     public List<WebElement> imagesArray;
 
+    @FindBy(css = "#homefeatured > li")
+    @CacheLookup
+    public List<WebElement> listOfDresses;
+
 
     public HomePage(WebDriver webDriver, PagesFactory pagesFactory) {
         super(webDriver, pagesFactory);
@@ -36,7 +40,10 @@ public class HomePage extends BasePage {
     }
 
     public void clickImageSliderPrevious(){
-
+        imageSliderPrevious.click();
     }
 
+    public WebElement getElementFromDressName(String dressName){
+        return findDressInDressList(listOfDresses, dressName);
+    }
 }

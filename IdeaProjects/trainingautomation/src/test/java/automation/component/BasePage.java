@@ -74,6 +74,20 @@ public class BasePage extends PagesFactory {
 
     }
 
+    public WebElement findDressInDressList(List<WebElement> listToIterate, String wantedText){
+        for (WebElement element : listToIterate){
+            if(element.findElement(By.cssSelector("div div.left-block div a.product_img_link img")).getAttribute("alt").equals(wantedText)){
+                //System.out.println(element.getAttribute("class"));
+                return element.findElement(By.cssSelector("div div.right-block div.content_price"));
+            }
+        }
+        return null;
+    }
+
+    public String getElementPrice(WebElement element){
+        return element.findElement(By.className("price")).getText();
+    }
+
     public HomePage returnToHomePage() {
         logoImage.click();
         return withPage().homePage();
