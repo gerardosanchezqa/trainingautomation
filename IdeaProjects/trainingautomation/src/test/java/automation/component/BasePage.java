@@ -1,8 +1,9 @@
 package automation.component;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -69,9 +70,7 @@ public class BasePage extends PagesFactory {
     }
 
     public boolean checkVisibility(WebElement webElement) {
-
         return webElement.isDisplayed();
-
     }
 
     public WebElement findDressInDressList(List<WebElement> listToIterate, String wantedText){
@@ -84,8 +83,30 @@ public class BasePage extends PagesFactory {
         return null;
     }
 
-    public String getElementPrice(WebElement element){
-        return element.findElement(By.className("price")).getText();
+    public String getDressCurrentPrice(WebElement element){
+        return element.findElement(By.className("price")).getText().replaceAll("[$]", "");
+    }
+
+    public String getDressOldPrice(WebElement element){
+        return element.findElement(By.className("old-price")).getText().replaceAll("[$]", "");
+    }
+
+    public String getDressDiscount(WebElement element){
+        return element.findElement(By.className("price-percent-reduction")).getText().replaceAll("[%]", "");
+    }
+
+    public void clickQuickViewButton(WebElement webElement) {
+
+        Actions builder = new Actions(_webDriver);
+        builder.moveToElement(webElement).perform();
+        builder.moveToElement(webElement.findElement(By.xpath("//*[@id=\"homefeatured\"]/li[7]/div/div[1]/div/a[2]"))).click().perform();
+
+    }
+
+    public void clickDressImage(WebElement webElement) {
+
+        webElement.findElement(By.cssSelector("div div.left-block div a.product_img_link img")).click();
+
     }
 
     public HomePage returnToHomePage() {

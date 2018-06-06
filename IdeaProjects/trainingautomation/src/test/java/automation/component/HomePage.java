@@ -17,6 +17,14 @@ public class HomePage extends BasePage {
     @CacheLookup
     WebElement imageSliderNext;
 
+    @FindBy(className = "fancybox-overlay")
+    @CacheLookup
+    WebElement fancyBoxOverlay;
+
+    @FindBy(className = "fancybox-close")
+    @CacheLookup
+    WebElement fancyBoxClose;
+
     @FindBy(css = "#homeslider > li")
     @CacheLookup
     public List<WebElement> imagesArray;
@@ -33,6 +41,14 @@ public class HomePage extends BasePage {
     public boolean checkImageVisibility(int imageIndex) {
         return checkVisibility(imagesArray.get(imageIndex));
 
+    }
+
+    public boolean isFancyBoxVisible() {
+        return checkVisibility(fancyBoxOverlay);
+    }
+
+    public void closeFancyBox() {
+        click(fancyBoxClose);
     }
 
     public void clickImageSliderNext(){

@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseTestCase {
 
+
     public WebDriver webDriver;
     public PagesFactory pagesFactory;
     HomePage homePage;
@@ -22,6 +23,8 @@ public class BaseTestCase {
 
     @BeforeTest
     public void before() {
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\Gera\\IdeaProjects\\trainingautomation\\IdeaProjects\\trainingautomation\\chromedriver.exe");
+
         webDriver = new ChromeDriver();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         pagesFactory = new PagesFactory(webDriver);
@@ -35,6 +38,6 @@ public class BaseTestCase {
     @AfterTest
     public void after() {
 
-        webDriver.quit();
+       webDriver.quit();
     }
 }
