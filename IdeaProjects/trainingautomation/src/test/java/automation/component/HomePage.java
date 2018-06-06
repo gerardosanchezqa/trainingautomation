@@ -25,7 +25,7 @@ public class HomePage extends BasePage {
     @CacheLookup
     WebElement fancyBoxClose;
 
-    @FindBy(css = "#homeslider > li")
+    @FindBy(css = "#homefeatured.product_list > li >.product-container")
     @CacheLookup
     public List<WebElement> imagesArray;
 

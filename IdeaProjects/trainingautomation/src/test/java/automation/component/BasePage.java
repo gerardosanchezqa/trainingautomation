@@ -34,8 +34,11 @@ public class BasePage extends PagesFactory {
     }
 
     public void click(WebElement webElement) {
-
         webElement.click();
+    }
+
+    public String getElementPrice(WebElement webElement) {
+        return webElement.getText().replaceAll("[$]", "");
     }
 
     public void sendKeys(WebElement webElement, String inputText) {
@@ -73,40 +76,38 @@ public class BasePage extends PagesFactory {
         return webElement.isDisplayed();
     }
 
-    public WebElement findDressInDressList(List<WebElement> listToIterate, String wantedText){
+    public WebElement findDressInDressList(List<WebElement> listToIterate, String dressName){
         for (WebElement element : listToIterate){
-            if(element.findElement(By.cssSelector("div div.left-block div a.product_img_link img")).getAttribute("alt").equals(wantedText)){
-                //System.out.println(element.getAttribute("class"));
-                return element.findElement(By.cssSelector("div div.right-block div.content_price"));
+            if(element.findElement(By.className("product_img_link")).getAttribute("title").equals(dressName)){
+                return element.findElement(By.cssSelector(".product-container"));
             }
         }
         return null;
     }
 
     public String getDressCurrentPrice(WebElement element){
-        return element.findElement(By.className("price")).getText().replaceAll("[$]", "");
+        return getElementPrice(element.findElement(By.cssSelector(".right-block .content_price .price.product-price")));
     }
 
     public String getDressOldPrice(WebElement element){
-        return element.findElement(By.className("old-price")).getText().replaceAll("[$]", "");
+        return getElementPrice(element.findElement(By.cssSelector(".right-block .content_price .old-price.product-price")));
     }
 
     public String getDressDiscount(WebElement element){
-        return element.findElement(By.className("price-percent-reduction")).getText().replaceAll("[%]", "");
+        return element.findElement(By.cssSelector(".right-block .content_price .price-percent-reduction")).getText().replaceAll("[%]", "");
     }
 
     public void clickQuickViewButton(WebElement webElement) {
-
         Actions builder = new Actions(_webDriver);
         builder.moveToElement(webElement).perform();
-        builder.moveToElement(webElement.findElement(By.xpath("//*[@id=\"homefeatured\"]/li[7]/div/div[1]/div/a[2]"))).click().perform();
-
+        builder.moveToElement(webElement.findElement(By.cssSelector(".left-block .quick-view"))).click().perform();
     }
 
-    public void clickDressImage(WebElement webElement) {
-
-        webElement.findElement(By.cssSelector("div div.left-block div a.product_img_link img")).click();
-
+    public DressDetailsPage clickMoreButton(WebElement webElement) {
+        Actions builder = new Actions(_webDriver);
+        builder.moveToElement(webElement).perform();
+        builder.moveToElement(webElement.findElement(By.cssSelector(".right-block a.button.lnk_view"))).click().perform();
+        return withPage().dressDetailsPage();
     }
 
     public HomePage returnToHomePage() {

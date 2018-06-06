@@ -23,4 +23,8 @@ public class PagesFactory {
         return new LoginPage(getWebDriver(), this);
     }
 
+    public DressDetailsPage dressDetailsPage() {
+        return new DressDetailsPage(getWebDriver(), this);
+    }
+
 }

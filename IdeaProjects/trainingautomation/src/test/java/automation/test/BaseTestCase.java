@@ -1,5 +1,6 @@
 package automation.test;
 
+import automation.component.DressDetailsPage;
 import automation.component.HomePage;
 import automation.component.LoginPage;
 import automation.component.PagesFactory;
@@ -20,15 +21,16 @@ public class BaseTestCase {
     public PagesFactory pagesFactory;
     HomePage homePage;
     LoginPage loginPage;
+    DressDetailsPage dressDetailsPage;
 
     @BeforeTest
     public void before() {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\Gera\\IdeaProjects\\trainingautomation\\IdeaProjects\\trainingautomation\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver","C:\\Users\\Gera\\IdeaProjects\\trainingautomation\\IdeaProjects\\trainingautomation\\chromedriver.exe");
 
         webDriver = new ChromeDriver();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         pagesFactory = new PagesFactory(webDriver);
-    }
+}
 
     public HomePage goToWebsite(String website) {
         webDriver.get(website);
@@ -37,7 +39,6 @@ public class BaseTestCase {
 
     @AfterTest
     public void after() {
-
        webDriver.quit();
     }
 }

@@ -24,10 +24,8 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage setEmailInput(String inputText) {
-
         sendKeys(emailInput, inputText);
         return withPage().loginPage();
-
     }
 
     public LoginPage setPasswordInput(String inputText) {

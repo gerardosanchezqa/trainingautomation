@@ -15,9 +15,7 @@ public class LoginAutomation extends BaseTestCase {
         Assert.assertTrue(homePage.isLoginButtonVisible());
         loginPage = homePage.clickLoginButton();
         Assert.assertEquals("Login - My Store", loginPage.getPageTitle());
-        homePage = loginPage.setEmailInput("geraautomationtest@test.com")
-                .setPasswordInput("geraautomation")
-                .clickSignInButton();
+        homePage = loginPage.setEmailInput("geraautomationtest@test.com").setPasswordInput("geraautomation").clickSignInButton();
         Assert.assertEquals("My account - My Store", homePage.getPageTitle());
         Assert.assertTrue(homePage.isLogoutButtonVisible());
     }
@@ -34,7 +32,7 @@ public class LoginAutomation extends BaseTestCase {
         homePage = loginPage.returnToHomePage();
         Assert.assertEquals("My Store", homePage.getPageTitle());
         Assert.assertTrue(homePage.checkImageVisibility(1));
-        Assert.assertFalse(homePage.checkImageVisibility(2));
+        Assert.assertFalse(homePage.checkImageVisibility(3));
         homePage.clickImageSliderNext();
         try{Thread.sleep(1000);}catch(InterruptedException e){e.printStackTrace();}
         homePage.clickImageSliderNext();
