@@ -29,14 +29,18 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage setPasswordInput(String inputText) {
-
         sendKeys(passwordInput, inputText);
         return withPage().loginPage();
     }
 
     public HomePage clickSignInButton() {
-
         click(signInButton);
         return withPage().homePage();
     }
+
+    public ShoppingCartPage clickSignInButtonReturnToCart() {
+        click(signInButton);
+        return withPage().shoppingCartPage();
+    }
+
 }

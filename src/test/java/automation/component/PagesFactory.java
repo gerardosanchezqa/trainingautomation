@@ -23,6 +23,10 @@ public class PagesFactory {
         return new LoginPage(getWebDriver(), this);
     }
 
+    public ShoppingCartPage shoppingCartPage() {
+        return new ShoppingCartPage(getWebDriver(), this);
+    }
+
     public DressDetailsPage dressDetailsPage() {
         return new DressDetailsPage(getWebDriver(), this);
     }

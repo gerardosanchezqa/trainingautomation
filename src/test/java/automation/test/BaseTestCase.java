@@ -1,9 +1,6 @@
 package automation.test;
 
-import automation.component.DressDetailsPage;
-import automation.component.HomePage;
-import automation.component.LoginPage;
-import automation.component.PagesFactory;
+import automation.component.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -22,6 +19,7 @@ public class BaseTestCase {
     HomePage homePage;
     LoginPage loginPage;
     DressDetailsPage dressDetailsPage;
+    ShoppingCartPage shoppingCartPage;
 
     @BeforeTest
     public void before() {

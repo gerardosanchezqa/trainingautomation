@@ -27,6 +27,14 @@ public class BasePage extends PagesFactory {
     @CacheLookup
     WebElement logoImage;
 
+    @FindBy(className = "navigation_page")
+    @CacheLookup
+    WebElement currentPageBreadcrumbs;
+
+    @FindBy(css = ".step.clearfix")
+    @CacheLookup
+    private WebElement shoppingCartNavigationBar;
+
     public BasePage(WebDriver webDriver, PagesFactory pagesFactory) {
         super(webDriver);
         this._webDriver = getWebDriver();
@@ -35,6 +43,18 @@ public class BasePage extends PagesFactory {
 
     public void click(WebElement webElement) {
         webElement.click();
+    }
+
+    public String getCurrentPageBreadcrumbs() {
+        return currentPageBreadcrumbs.getText();
+    }
+
+    public boolean isNavBarVisible() {
+        return checkVisibility(shoppingCartNavigationBar);
+    }
+
+    public boolean checkVisibility(WebElement webElement) {
+        return webElement.isDisplayed();
     }
 
     public String getElementPrice(WebElement webElement) {
@@ -47,10 +67,8 @@ public class BasePage extends PagesFactory {
     }
 
     public LoginPage clickLoginButton() {
-
         click(loginButton);
         return withPage().loginPage();
-
     }
 
     public LoginPage clickLogoutButton() {
@@ -67,14 +85,9 @@ public class BasePage extends PagesFactory {
     }
 
     public boolean isLogoutButtonVisible() {
-
         return checkVisibility(logoutButton);
-
     }
 
-    public boolean checkVisibility(WebElement webElement) {
-        return webElement.isDisplayed();
-    }
 
     public WebElement findDressInDressList(List<WebElement> listToIterate, String dressName){
         for (WebElement element : listToIterate){
