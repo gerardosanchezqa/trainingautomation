@@ -2,7 +2,6 @@ package automation.test;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -43,11 +42,5 @@ public class EndToEndTest extends BaseTestCase {
         shoppingCartPage = loginPage.setEmailInput("geraautomationtest@test.com").setPasswordInput("geraautomation").clickSignInButtonReturnToCart();
         Assert.assertTrue(shoppingCartPage.isNavBarVisible());
         Assert.assertEquals("Addresses", shoppingCartPage.getCurrentPageBreadcrumbs());
-    }
-
-    @AfterTest
-    @Override
-    public void after() {
-
     }
 }
