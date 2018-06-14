@@ -20,6 +20,8 @@ public class BaseTestCase {
     LoginPage loginPage;
     DressDetailsPage dressDetailsPage;
     ShoppingCartPage shoppingCartPage;
+    MyAccountPage myAccountPage;
+    OrderHistoryPage orderHistoryPage;
 
     @BeforeTest
     public void before() {

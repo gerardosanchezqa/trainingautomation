@@ -31,4 +31,12 @@ public class PagesFactory {
         return new DressDetailsPage(getWebDriver(), this);
     }
 
+    public MyAccountPage myAccountPage() {
+        return new MyAccountPage(getWebDriver(), this);
+    }
+
+    public OrderHistoryPage orderHistoryPage() {
+        return new OrderHistoryPage(getWebDriver(), this);
+    }
+
 }

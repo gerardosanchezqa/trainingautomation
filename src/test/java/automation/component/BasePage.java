@@ -27,8 +27,11 @@ public class BasePage extends PagesFactory {
     @CacheLookup
     WebElement logoImage;
 
-    @FindBy(className = "navigation_page")
+    @FindBy(className = "account")
     @CacheLookup
+    WebElement goToMyAccountButton;
+
+    @FindBy(className = "navigation_page")
     WebElement currentPageBreadcrumbs;
 
     @FindBy(css = ".step.clearfix")
@@ -83,6 +86,14 @@ public class BasePage extends PagesFactory {
         return checkVisibility(loginButton);
 
     }
+
+    public MyAccountPage clickGoToMyAccountButton() {
+        click(goToMyAccountButton);
+        return withPage().myAccountPage();
+
+    }
+
+
 
     public boolean isLogoutButtonVisible() {
         return checkVisibility(logoutButton);

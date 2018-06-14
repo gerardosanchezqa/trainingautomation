@@ -14,6 +14,7 @@ public class EndToEndTest extends BaseTestCase {
     String dressOldPrice;
     String dressDiscount;
     WebElement selectedDress;
+    String orderConfirmationString;
 
     @Test(priority = 0)
     public void verifyDiscountsOnHomePage() {
@@ -42,5 +43,17 @@ public class EndToEndTest extends BaseTestCase {
         shoppingCartPage = loginPage.setEmailInput("geraautomationtest@test.com").setPasswordInput("geraautomation").clickSignInButtonReturnToCart();
         Assert.assertTrue(shoppingCartPage.isNavBarVisible());
         Assert.assertEquals("Addresses", shoppingCartPage.getCurrentPageBreadcrumbs());
+        shoppingCartPage.clickProceedToShippingButton();
+        Assert.assertEquals("Shipping", shoppingCartPage.getCurrentPageBreadcrumbs());
+        shoppingCartPage.clickAgreeToTermsCheckbox().clickProceedToCheckoutButton();
+        Assert.assertEquals("Your payment method", shoppingCartPage.getCurrentPageBreadcrumbs());
+        shoppingCartPage.clickPayByBankWireButton();
+        Assert.assertEquals("Bank-wire payment.", shoppingCartPage.getCurrentPageBreadcrumbs());
+        shoppingCartPage.clickConfirmOrderButton();
+        Assert.assertEquals("Order confirmation", shoppingCartPage.getCurrentPageBreadcrumbs());
+        orderConfirmationString = shoppingCartPage.getOrderConfirmationInformationString();
+        Assert.assertTrue(shoppingCartPage.isOrderConfirmed());
+        orderHistoryPage = shoppingCartPage.clickGoToMyAccountButton().clickOrderHistoryButton();
+        Assert.assertTrue(orderHistoryPage.isOrderConfirmed(orderConfirmationString));
     }
 }
