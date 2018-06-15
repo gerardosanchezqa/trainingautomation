@@ -76,3 +76,11 @@ public class APITesting {
     }
 
 }
+
+/*
+https://semaphoreci.com/community/tutorials/testing-rest-endpoints-using-rest-assured
+https://github.com/rest-assured/rest-assured/wiki/Usage#request-body
+https://reqres.in/
+http://toolsqa.com/rest-assured/post-request-using-rest-assured/
+http://toolsqa.com/rest-assured/read-response-body-using-rest-assured/
+ */
