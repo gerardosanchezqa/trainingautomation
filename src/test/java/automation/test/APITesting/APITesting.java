@@ -1,4 +1,4 @@
-package automation.test;
+package automation.test.APITesting;
 
 
 import io.restassured.RestAssured;
@@ -7,9 +7,6 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
@@ -65,15 +62,59 @@ public class APITesting {
     }
 
     @Test
-    public void postMessageAndPrintResponse() {
-        Map<String, String> requestParams = new HashMap<>();
-        requestParams.put("resource", "test");
+    public void buildRequestAndPost() {
+        RequestBuild request = new RequestBuild();
+        request.setResource("test");
 
-        Response response = request.contentType("application/json").body(requestParams).post(baseURI);
+        Response response =
+                given()
+                        .contentType("application/json")
+                        .body(request)
+                        .when().post(baseURI);
+
+        Assert.assertFalse(response.body().toString().isEmpty());
         System.out.printf("printtt" + response.body().asString());
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 201);
     }
+
+    @Test
+    public void jsonPathEvaluatorBDD() {
+
+        RequestBuild request = new RequestBuild();
+        request.setResource("test");
+
+        given()
+                .contentType("application/json")
+                .body(request)
+                .when()
+                .post(baseURI)
+                .then()
+                .body("resource", equalTo("test"))
+                .statusCode(201);
+    }
+
+    @Test
+    public void jsonPathEvaluator() {
+        RequestBuild request = new RequestBuild();
+        request.setResource("test");
+
+        Response response = postRequestAndGetJSONResponse(request);
+
+        Assert.assertEquals(getJsonPathValue(response, "resource"), "test", "Correct resource received in the response");
+    }
+
+    private Response postRequestAndGetJSONResponse(RequestBuild request) {
+        return given()
+                .contentType("application/json")
+                .body(request)
+                .when().post(baseURI);
+    }
+
+    public String getJsonPathValue(Response response, String requestedPath) {
+        return response.jsonPath().get(requestedPath);
+    }
+
 
 }
 
